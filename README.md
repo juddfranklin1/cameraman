@@ -1,6 +1,8 @@
 # cameraman
 __Webcam to S3 via HTML5
 
+Playing a bit with a helpful html5rocks tutorial (https://www.html5rocks.com/en/tutorials/getusermedia/intro/)
+
 uses simple PHP backend
 
 composer install
