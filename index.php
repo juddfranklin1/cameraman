@@ -6,18 +6,48 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <style>
+        #photoshop {
+            border: 1px solid black;
+            width: 50%;
+            margin: 1rem auto;
+            display: block;
+        }
+    </style>
 </head>
 <body>
 <video id="screenshot-video" autoplay></video>
 <img id="screenshot-img" src="">
 <p><button id="screenshot-button">Take Screenshot</button></p>
-
+<canvas id="photoshop"></canvas>
+<button class="blur">Blur</button>
+<button class="fade">Fade</button>
 <script>
   const button = document.querySelector('#screenshot-button');
   const img = document.querySelector('#screenshot-img');
   const video = document.querySelector('#screenshot-video');
 
-  const canvas = document.createElement('canvas');
+  const blurButton = document.querySelector('button.blur');
+  const fadeButton = document.querySelector('button.fade');
+        
+        blurButton.onclick = function(){
+            if(canvas.style.webkitFilter.indexOf('blur') !== -1) {
+                canvas.style.webkitFilter = canvas.style.webkitFilter.replace('blur(3px)','');    
+            } else {
+                canvas.style.webkitFilter += ' blur(3px) ';
+            }
+        }
+        
+        fadeButton.onclick = function(){
+            console.log(canvas.style.webkitFilter, canvas.style.webkitFilter.indexOf('opacity'));
+            if(canvas.style.webkitFilter.indexOf('opacity') !== -1) {
+                canvas.style.webkitFilter = canvas.style.webkitFilter.replace('opacity(30%)','');    
+            } else {
+                canvas.style.webkitFilter += "opacity(30%)";
+            }
+        }
+
+  const canvas = document.querySelector('#photoshop');
 
   button.onclick = video.onclick = function() {
     canvas.width = video.videoWidth;
