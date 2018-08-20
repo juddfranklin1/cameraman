@@ -6,8 +6,7 @@ $s3 = new S3Connection;
 
 $rest_json = file_get_contents("php://input");
 $_POST = json_decode($rest_json, true);
-
-$imageName = 'browser-pic-' . time() . '.webp';
+$imageName = 'browser-pic-' . time() .  $_POST['pictureFormat'];
 
 if(isset($_POST['pictureInfo'])){
     $img = str_replace('data:image/webp;base64,', '', $_POST['pictureInfo']);
